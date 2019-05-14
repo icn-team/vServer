@@ -46,3 +46,9 @@ RUN rm -rf /var/lib/apt/lists/*                                                 
   && apt-get autoremove -y                                                                      \
   && apt-get clean && rm -r /hicn                                                               \
   && rm -rf vpp
+
+WORKDIR /tmp
+
+COPY init.sh .
+
+WORKDIR /
