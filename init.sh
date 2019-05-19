@@ -1,17 +1,13 @@
 #!/bin/bash
 
-VETH=($(ip link show | grep mtu | awk '{print $2}' | awk '{$0=substr($0,1,length($0)-1); print $0}'))
-
-for i in "${VETH[@]}"
+for i in $*
 do
-   if [[ $i == *"eth"* ]]
-   then
-       ip addr flush dev $i
-       ethtool -K $i tx off rx off ufo off gso off gro off tso off
-fi
+   ip addr flush dev $i
+   ethtool -K $i tx off rx off ufo off gso off gro off tso off
 done
+
 /usr/bin/vpp -c /etc/hicn/super_startup.conf &
-sleep 5
+sleep 20
 sysrepod
 sysrepo-plugind
 netopeer2-server
