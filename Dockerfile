@@ -19,15 +19,6 @@ RUN apt-get install -y git cmake build-essential libpcre3-dev swig \
   # Install hicn dependencies                                                                   \
 RUN rm -rf /var/lib/apt/lists/*                                                                 \
   ############################################################                                  \
-  # Build libmemif                                                                              \
-  ############################################################                                  \
-  && git clone https://gerrit.fd.io/r/vpp                                                       \
-  && pushd vpp && git checkout origin/stable/1904                                               \
-  && pushd extras/libmemif                                                                      \
-  && mkdir build && pushd build                                                                 \
-  && cmake ../ -DCMAKE_INSTALL_PREFIX=/usr                                                      \
-  && make -j4 install && popd && popd && popd                                                   \
-  ############################################################                                  \
   # Build hicn-apps                                                                             \
   ############################################################                                  \
   && git clone https://github.com/FDio/hicn.git                                                 \
