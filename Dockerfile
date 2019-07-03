@@ -30,3 +30,4 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git cmake build-essential 
   && rm -rf vpp
 
 WORKDIR /
+CMD ["/tmp/init.sh"]
