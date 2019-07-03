@@ -18,7 +18,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git cmake build-essential 
   ############################################################                                  \
   && git clone https://github.com/FDio/hicn.git                                                 \
   && mkdir build && pushd build                                                                 \
-  && cmake ../hicn/apps -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HICNPLUGIN=ON -DBUILD_APPS=ON       \
+  && cmake ../hicn -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HICNPLUGIN=ON -DBUILD_APPS=ON            \
+  && cd apps                                                                                    \
   && make -j4 install && popd                                                                   \
   ####################################################                                          \
   # Cleanup                                                                                     \
