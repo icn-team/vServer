@@ -1,4 +1,4 @@
-FROM icnteam/vswitch
+FROM icnteam/vswitch:amd64
 
 # Build hicn suite (from source for disabling punting)
 WORKDIR /hicn
@@ -11,12 +11,13 @@ RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb
 RUN apt-get update
 
 # Install main packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git cmake build-essential libasio-dev --no-install-recommends \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git cmake build-essential libasio-dev vpp-dev libmemif-dev libmemif python3-ply --no-install-recommends \
     libparc-dev                                                                                 \
   ############################################################                                  \
   # Build hicn-apps                                                                             \
   ############################################################                                  \
   && git clone https://github.com/FDio/hicn.git                                                 \
+  && pushd hicn && git pull "https://gerrit.fd.io/r/hicn" refs/changes/16/24216/8 && popd       \
   && mkdir build && pushd build                                                                 \
   && cmake ../hicn -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HICNPLUGIN=ON -DBUILD_APPS=ON            \
   && cd apps                                                                                    \
