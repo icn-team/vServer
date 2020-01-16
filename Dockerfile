@@ -32,3 +32,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git cmake build-essential 
   && rm -rf vpp
 
 WORKDIR /
+COPY init.sh /tmp/init.sh
+COPY startup_template.conf /tmp/startup_template.conf
+ENTRYPOINT ["/bin/bash", "/tmp/init.sh"]
