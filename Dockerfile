@@ -11,8 +11,17 @@ RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb
 RUN apt-get update
 
 # Install main packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git cmake build-essential libasio-dev vpp-dev libmemif-dev libmemif python3-ply --no-install-recommends \
-    libparc-dev                                                                                 \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        git \
+        cmake \
+        build-essential \
+        libasio-dev \
+        vpp-dev \
+        libmemif-dev \
+        libmemif \
+        python3-ply \
+        --no-install-recommends \
+        libparc-dev \
   ############################################################                                  \
   # Build hicn-apps                                                                             \
   ############################################################                                  \
@@ -24,6 +33,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git cmake build-essential 
   ####################################################                                          \
   # Cleanup                                                                                     \
   ####################################################                                          \
+  && apt-mark manual libparc                                                                    \
   && apt-get remove -y git cmake build-essential libasio-dev libparc-dev                        \
   && rm -rf /var/lib/apt/lists/*                                                                \
   && apt-get autoremove -y                                                                      \
