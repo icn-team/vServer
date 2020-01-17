@@ -1,7 +1,6 @@
 #!/bin/bash
 echo "Configure VPP"
 if [ -n "$DPDK" ]
-   BLOCK=""
 then
     BLOCK="dpdk { $DPDK }"
 fi
@@ -13,7 +12,7 @@ fi
 
 if [ ! -n "$PIT_SIZE" ]
 then
-    PIT_SIZE=8192
+    PIT_SIZE=131072
 fi
 
 if [ ! -n "$CS_SIZE" ]
