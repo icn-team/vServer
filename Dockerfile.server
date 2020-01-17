@@ -1,2 +1,2 @@
-FROM icnteam/vswitch
+FROM icnteam/vswitch:amd64
 RUN apt-get update && apt-get install -y hicn-apps-memif hicn-utils-memif
