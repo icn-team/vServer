@@ -21,7 +21,7 @@ jobs:
           docker buildx build \
             --platform linux/amd64 \
             --output type=docker \
-            --file Dockerfile.server -t icnteam/vswitch:amd64 .
-          docker push icnteam/vswitch:amd64
+            --file Dockerfile.server -t icnteam/vserver:amd64 .
+          docker push icnteam/vserver:amd64
 
 
