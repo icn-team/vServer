@@ -6,6 +6,11 @@ then
     DPDK_BLOCK="dpdk { $(echo $DPDK | tr -d '"') }"
 fi
 
+if [ -z "$CPU_CORE" ]
+then
+    CPU_CORE=1
+fi
+
 if [ -z "$NUM_BUFFER" ]
 then
     NUM_BUFFER=16384
@@ -27,6 +32,7 @@ then
 fi
 
 sed -e "s/DPDK/$DPDK_BLOCK/g" \
+    -e "s/CPU_CORE/$CPU_CORE/g" \
     -e "s/NUM_BUFFER/$NUM_BUFFER/g" \
     -e "s/PIT_SIZE/$PIT_SIZE/g" \
     -e "s/CS_SIZE/$CS_SIZE/g" \
