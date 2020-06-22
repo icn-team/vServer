@@ -8,6 +8,7 @@ SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update && apt-get update && apt-get install -y curl
 RUN curl -s https://packagecloud.io/install/repositories/fdio/release/script.deb.sh | bash
+RUN curl -s https://packagecloud.io/install/repositories/fdio/hicn/script.deb.sh | bash
 RUN apt-get update
 
 # Install main packages
