@@ -1,6 +1,6 @@
 FROM icnteam/vswitch:amd64
 
-# Build hicn suite (from source for disabling punting)
+# Build hicn suite (from source for disabling punting )
 WORKDIR /hicn
 
 # Use bash shell
